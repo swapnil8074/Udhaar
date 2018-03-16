@@ -8,6 +8,11 @@
 		</div>
 		<div class="main-login main-center">
 			<!-- <form class="form-horizontal" method="post" action="/welcomeuser/signup"> -->
+				<?php if($this->session->flashdata('msg')){ ?>
+					<div class="alert <?php echo $this->session->flashdata('msgClass') ?>">
+					<strong><?php echo ($this->session->flashdata('msgClass') == 'alert-danger' )? "Oops!" : '' ?></strong>  <?php echo $this->session->flashdata('msg'); ?>
+				  </div>
+				<?php } ?>
 			<?php echo validation_errors(); ?>
 			<?php echo form_open('welcomeuser/signup'); ?>
 				<div class="form-group">
@@ -45,7 +50,7 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-							<input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+							<input type="password" class="form-control" name="password" id="password"  <?php echo set_value('password'); ?> placeholder="Enter your Password"/>
 						</div>
 					</div>
 				</div>
@@ -55,7 +60,7 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-							<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+							<input type="password" class="form-control" name="confirm" <?php echo set_value('confirm'); ?> id="confirm"  placeholder="Confirm your Password"/>
 						</div>
 					</div>
 				</div>
