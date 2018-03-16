@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="row main">
+	<div class="col-md-offset-3 col-md-6 ">
 		<div class="panel-heading">
 			<div class="panel-title text-center">
 				<h1 class="title">Company Name</h1>
@@ -7,8 +7,9 @@
 			</div>
 		</div>
 		<div class="main-login main-center">
-			<form class="form-horizontal" method="post" action="#">
-
+			<!-- <form class="form-horizontal" method="post" action="/welcomeuser/signup"> -->
+			<?php echo validation_errors(); ?>
+			<?php echo form_open('welcomeuser/signup'); ?>
 				<div class="form-group">
 					<label for="name" class="cols-sm-2 control-label">Your Name</label>
 					<div class="cols-sm-10">
@@ -60,12 +61,12 @@
 				</div>
 
 				<div class="form-group ">
-					<button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+					<button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
 				</div>
 				<div class="login-register">
-					<a href="index.php">Login</a>
+					<a href="<?php echo base_url('welcomeuser/signin'); ?>">Sign In</a>
 				</div>
-			</form>
+				<?php echo form_close(); ?>
 		</div>
 	</div>
 </div>
