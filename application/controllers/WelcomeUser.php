@@ -30,32 +30,46 @@ class WelcomeUser extends CI_Controller
         if ($this->form_validation->run() == true) {
             $formData = $this->input->post();
             $this->load->model('WelcomeUser_model');
-            $user = $this->WelcomeUser_model->getUserInfo($email);
+            $user = $this->WelcomeUser_model->getUserInfo($formData['email']);
             // print_r($user);die;
 
             if (!empty($user)) {
                 $this->session->set_flashdata(array('msg' => 'Email already exist!', 'msgClass' => 'alert-danger'));
                 $this->session->keep_flashdata(array('msg', 'msgClass'));
-                // print_r($this->session->flashdata('msg'));die;
-                $this->load->template('signup');
             } else {
-                $form['name'] = explode(" ",$form['name']);
-                $user['first_name'] = $form['name'][0];
-                $user['last_name'] = $form['name'][1];
-                $user['email'] = $form['email'];
-                $user['password'] = $form['password'];
+
+                $user['first_name'] = $formData['name'];
+                // $user['last_name'] = $formData['name'];
+                $user['email'] = $formData['email'];
+                $user['password'] = $formData['password'];
                 $user['otp'] = $this->generateOtp(30);
-                
-                print_r($user);die;
-                $this->load->template('signup');
+                $accountCreated = $this->WelcomeUser_model->createUserAccount($user);
+                if ($accountCreated) {
+                    $this->load->library('email');
+                    $this->email->from('your@example.com', 'Your Name');
+                    $this->email->to('someone@example.com');
+                    $this->email->cc('another@another-example.com');
+                    $this->email->bcc('them@their-example.com');
+                    $this->email->subject('Email Test');
+                    $this->email->message('Testing the email class.');
+
+
+                    $this->email->send();
+                    $this->session->set_flashdata(array('msg' => 'Mail with activation link has been sent successfully! Kindly verify your email account. ',
+                        'msgClass' => 'alert-success'));
+                    $this->session->keep_flashdata(array('msg', 'msgClass'));
+                } else {
+                    $this->session->set_flashdata(array('msg' => 'Something went wrong! Please try again after sometime.',
+                        'msgClass' => 'alert-danger'));
+                }
+
             }
 
-        } else {
-            $this->load->template('signup');
         }
+        $this->load->template('signup');
     }
 
-    protected function generateOtp($length = 20)
+    public function generateOtp($length = 20)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -65,5 +79,8 @@ class WelcomeUser extends CI_Controller
         }
         return $randomString;
     }
+
+    // public function sendMail(){}
+
 
 }

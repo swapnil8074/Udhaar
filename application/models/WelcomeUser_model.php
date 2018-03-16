@@ -19,5 +19,15 @@ class WelcomeUser_model extends CI_Model
         }
     }
 
+    public function createUserAccount($user = null)
+    {
+        if ($user) {
+            $this->db->insert('users', $user);
+            return ($this->db->affected_rows() != 1) ? false : true;
+        } else {
+            return false;
+        }
+
+    }
 
 }
