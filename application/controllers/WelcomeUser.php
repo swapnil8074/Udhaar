@@ -24,17 +24,17 @@ class WelcomeUser extends CI_Controller
         // $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         // setting validation rules
-        $this->form_validation->set_rules('name', 'Your Name', 'required');
-        $this->form_validation->set_rules('email', 'Your Email', 'required', array('required' => 'You must provide %s.'));
 
-        if (!empty($this->input->post())) {
-            // echo "<pre>" ; print_r($this->input->post()); die;
-        }
+        $this->config->load('form_validation');
+        $this->form_validation->set_rules($this->config->item('signUp'));
 
-        if ($this->form_validation->run() == True) {
+        if ($this->form_validation->run() == true) {
+            $formData = $this->input->post();
+
             $this->load->template('signup');
+
         } else {
-            $this->load->template('formSuccess');
+            $this->load->template('signup');
         }
     }
 
@@ -49,6 +49,9 @@ class WelcomeUser extends CI_Controller
         return $randomString;
     }
 
-
-
+    protected function getUserInfo($email = null)
+    {
+        $this->load->model('WelcomeUser');
+        $this->WelcomeUser->getUserInfo($email);
+    }
 }

@@ -2,7 +2,7 @@
 	<div class="col-md-offset-3 col-md-6 ">
 		<div class="panel-heading">
 			<div class="panel-title text-center">
-				<h1 class="title">Company Name</h1>
+				<h1 class="title">Sign Up</h1>
 				<hr />
 			</div>
 		</div>
@@ -15,7 +15,7 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+							<input type="text" class="form-control" name="name" value="<?php echo set_value('name'); ?>" id="name"  placeholder="Enter your Name"/>
 						</div>
 					</div>
 				</div>
@@ -25,7 +25,7 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+							<input type="text" class="form-control" name="email" value="<?php echo set_value('email'); ?>" id="email"  placeholder="Enter your Email"/>
 						</div>
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+							<input type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" id="username"  placeholder="Enter your Username"/>
 						</div>
 					</div>
 				</div>
