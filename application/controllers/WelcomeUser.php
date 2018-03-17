@@ -45,11 +45,10 @@ class WelcomeUser extends CI_Controller
                 $user['otp'] = $this->generateOtp(30);
                 $accountCreated = $this->WelcomeUser_model->createUserAccount($user);
                 if ($accountCreated) {
+
                     $this->load->library('email');
-                    $this->email->from('udhaar@no-reply.com', 'udhaar@no-reply.com');
+                    $this->email->from('no-reply@udhaar.com');
                     $this->email->to('swapnilshukla201@gmail.com');
-                    // $this->email->cc('another@another-example.com');
-                    // $this->email->bcc('them@their-example.com');
                     $this->email->subject('Udhaar | Verify Account');
                     $this->email->message('
                     Dear ' . $user["first_name"] . ',
@@ -57,24 +56,22 @@ class WelcomeUser extends CI_Controller
                         base_url('welcomeUser/verifyAccount/') . $user['otp'] . '
                      ');
 
-                    $config['protocol'] = 'sendmail';
-                    $config['mailpath'] = '/usr/sbin/sendmail';
-                    $config['charset'] = 'iso-8859-1';
-                    $config['wordwrap'] = true;
-
-                    $this->email->initialize($config);
+                    $this->email->set_mailtype("html");
+                    $this->email->set_newline("\r\n");
 
                     if ($this->email->send()) {
+
                         $this->session->set_flashdata(array('msg' => 'Mail with activation link has been sent successfully! Kindly verify your email account. ',
                             'msgClass' => 'alert-success'));
                         $this->session->keep_flashdata(array('msg', 'msgClass'));
+                        redirect(current_url());
                     }
 
                 } else {
                     $this->session->set_flashdata(array('msg' => 'Something went wrong! Please try again after sometime.',
                         'msgClass' => 'alert-danger'));
-                        $this->session->keep_flashdata(array('msg', 'msgClass'));
-                        
+                    $this->session->keep_flashdata(array('msg', 'msgClass'));
+                    print_r('mail not sent');
                 }
 
             }
@@ -94,6 +91,18 @@ class WelcomeUser extends CI_Controller
         return $randomString;
     }
 
-    // public function sendMail(){}
-
+    public function verifyAccount($otp = null)
+    {
+        $this->load->model('WelcomeUser_model');
+        $result = $this->WelcomeUser_model->verifyAccount($otp);
+        if ($result) {
+            $this->session->set_flashdata(array('msg' => 'Account has been verified successfully! Enter your credentials to signin. ', 'msgClass' => 'alert-success'));
+            $this->session->keep_flashdata(array('msg', 'msgClass'));
+            redirect('welcomeuser/signin');
+        } else {
+            $this->session->set_flashdata(array('msg' => 'Activation link is invalid ', 'msgClass' => 'alert-danger'));
+            $this->session->keep_flashdata(array('msg', 'msgClass'));
+            redirect('welcomeuser/signin');
+        }
+    }
 }

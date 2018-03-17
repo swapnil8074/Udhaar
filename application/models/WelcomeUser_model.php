@@ -30,4 +30,19 @@ class WelcomeUser_model extends CI_Model
 
     }
 
+    public function verifyAccount($otp = null)
+    {
+        // $this->db->set('verified','1');
+        $data = array('verified'=> '1');
+        $this->db->where('otp', $otp);
+        $this->db->update('users', $data);
+
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }
