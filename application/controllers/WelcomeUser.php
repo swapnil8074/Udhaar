@@ -46,21 +46,35 @@ class WelcomeUser extends CI_Controller
                 $accountCreated = $this->WelcomeUser_model->createUserAccount($user);
                 if ($accountCreated) {
                     $this->load->library('email');
-                    $this->email->from('your@example.com', 'Your Name');
-                    $this->email->to('someone@example.com');
-                    $this->email->cc('another@another-example.com');
-                    $this->email->bcc('them@their-example.com');
-                    $this->email->subject('Email Test');
-                    $this->email->message('Testing the email class.');
+                    $this->email->from('udhaar@no-reply.com', 'udhaar@no-reply.com');
+                    $this->email->to('swapnilshukla201@gmail.com');
+                    // $this->email->cc('another@another-example.com');
+                    // $this->email->bcc('them@their-example.com');
+                    $this->email->subject('Udhaar | Verify Account');
+                    $this->email->message('
+                    Dear ' . $user["first_name"] . ',
+                    Click on below link to verify your account.' .
+                        base_url('welcomeUser/verifyAccount/') . $user['otp'] . '
+                     ');
 
+                    $config['protocol'] = 'sendmail';
+                    $config['mailpath'] = '/usr/sbin/sendmail';
+                    $config['charset'] = 'iso-8859-1';
+                    $config['wordwrap'] = true;
 
-                    $this->email->send();
-                    $this->session->set_flashdata(array('msg' => 'Mail with activation link has been sent successfully! Kindly verify your email account. ',
-                        'msgClass' => 'alert-success'));
-                    $this->session->keep_flashdata(array('msg', 'msgClass'));
+                    $this->email->initialize($config);
+
+                    if ($this->email->send()) {
+                        $this->session->set_flashdata(array('msg' => 'Mail with activation link has been sent successfully! Kindly verify your email account. ',
+                            'msgClass' => 'alert-success'));
+                        $this->session->keep_flashdata(array('msg', 'msgClass'));
+                    }
+
                 } else {
                     $this->session->set_flashdata(array('msg' => 'Something went wrong! Please try again after sometime.',
                         'msgClass' => 'alert-danger'));
+                        $this->session->keep_flashdata(array('msg', 'msgClass'));
+                        
                 }
 
             }
@@ -81,6 +95,5 @@ class WelcomeUser extends CI_Controller
     }
 
     // public function sendMail(){}
-
 
 }
