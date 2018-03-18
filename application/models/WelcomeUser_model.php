@@ -46,13 +46,14 @@ class WelcomeUser_model extends CI_Model
     }
     public function login($formData = null)
     {
-        $this->db->select('*');
+        $this->db->select('first_name, username, email, gender, picture_url, verified');
         $this->db->from('users');
         $this->db->where('email', $formData['email']);
         $this->db->or_where('username', $formData['email']);
         $this->db->where('password', $formData['password']);
         $query = $this->db->get();
-        $result = $query->result_array();
+        // echo $this->db->last_query(); die;
+        $result = $query->row();
         if (!empty($result)) {
             return $result;
         } else {

@@ -21,19 +21,21 @@ class WelcomeUser extends CI_Controller
 
             $this->load->library('form_validation');
 
-            $this->config->load('form_validation');            
+            $this->config->load('form_validation');
             $this->form_validation->set_rules($this->config->item('signIn'));
 
             if ($this->form_validation->run() == true) {
                 $formData = $this->input->post();
                 $userData = $this->login($formData);
+                if ($userData) {
+                    $this->session->set_userdata($userData);
+                    redirect('dashboard');
+                } else {
+                    $this->session->set_flashdata(array('msg' => 'Incorrect Username / Email ', 'msgClass' => 'alert-danger'));
+                    $this->session->keep_flashdata(array('msg', 'msgClass'));
+                }
 
-            } 
-            // else {
-
-            //     $this->session->set_flashdata(array('msg' => 'Incorrect Username / Email ', 'msgClass' => 'alert-danger'));
-            //     $this->session->keep_flashdata(array('msg', 'msgClass'));
-            // }
+            }
 
         }
 
