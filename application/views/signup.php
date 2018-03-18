@@ -1,5 +1,21 @@
 <div class="container">
-	<div class="col-md-offset-3 col-md-6 ">
+<div class="col-md-6">
+	<br>
+<h1>Welcome to <span class='appTitle'>Udh<span class='tcBlue'>aa</span>r<span></h1>
+<h5>Split expenses and manage contributions you make with friends.</h5>
+<br>
+<br>
+<ul class='medium-text'>
+	<li>Share bills and IOUs.</li>
+	<li>Make sure everyone gets paid back.</li>
+	<li>Totally free for web, iPhone, and Android.</li>
+</ul>
+<br>
+<br>
+<p class="medium-text">Udh<span class='tcBlue'>aa</span>r takes the trouble out of sharing expenses – with friends, with roommates, with anyone.
+We do the math for you</p>
+</div>
+	<div class=" col-md-6 ">
 		<div class="panel-heading">
 			<div class="panel-title text-center">
 				<h1 class="title">Sign Up</h1>
@@ -8,13 +24,15 @@
 		</div>
 		<div class="main-login main-center">
 			<!-- <form class="form-horizontal" method="post" action="/welcomeuser/signup"> -->
-				<?php if($this->session->flashdata('msg')){ ?>
+				<?php if ($this->session->flashdata('msg')) {?>
 					<div class="alert <?php echo $this->session->flashdata('msgClass') ?>">
-					<strong><?php echo ($this->session->flashdata('msgClass') == 'alert-danger' )? "Oops!" : '' ?></strong>  <?php echo $this->session->flashdata('msg'); ?>
+					<strong><?php echo ($this->session->flashdata('msgClass') == 'alert-danger') ? "Oops!" : '' ?></strong>  <?php echo $this->session->flashdata('msg'); ?>
 				  </div>
-				<?php } ?>
+				<?php }?>
 			<?php echo validation_errors(); ?>
-			<?php echo form_open('welcomeuser/signup'); ?>
+
+			<?php	$attributes = array('class' => 'signupForm', 'id' => 'signupForm');
+echo form_open('welcomeuser/signup', $attributes);?>
 				<div class="form-group">
 					<label for="name" class="cols-sm-2 control-label">Your Name</label>
 					<div class="cols-sm-10">
@@ -72,6 +90,7 @@
 					<a href="<?php echo base_url('welcomeuser/signin'); ?>">Sign In</a>
 				</div>
 				<?php echo form_close(); ?>
+
 		</div>
 	</div>
 </div>
