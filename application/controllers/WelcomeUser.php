@@ -16,6 +16,27 @@ class WelcomeUser extends CI_Controller
 
     public function signin()
     {
+
+        if (!empty($this->input->post())) {
+
+            $this->load->library('form_validation');
+
+            $this->config->load('form_validation');            
+            $this->form_validation->set_rules($this->config->item('signIn'));
+
+            if ($this->form_validation->run() == true) {
+                $formData = $this->input->post();
+                $userData = $this->login($formData);
+
+            } 
+            // else {
+
+            //     $this->session->set_flashdata(array('msg' => 'Incorrect Username / Email ', 'msgClass' => 'alert-danger'));
+            //     $this->session->keep_flashdata(array('msg', 'msgClass'));
+            // }
+
+        }
+
         $this->load->template('signin');
     }
 
@@ -104,5 +125,13 @@ class WelcomeUser extends CI_Controller
             $this->session->keep_flashdata(array('msg', 'msgClass'));
             redirect('welcomeuser/signin');
         }
+    }
+
+    public function login($formData = null)
+    {
+        // add this function just in case if will have further requirements in the future.
+        $this->load->model('WelcomeUser_model');
+        $userData = $this->WelcomeUser_model->login($formData);
+        return $userData;
     }
 }

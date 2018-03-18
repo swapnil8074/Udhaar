@@ -34,7 +34,7 @@ We do the math for you</p>
 			<?php	$attributes = array('class' => 'signinForm', 'id' => 'signinForm');
 echo form_open('signin', $attributes);?>
 				<div class="form-group">
-					<label for="email" class="cols-sm-2 control-label">Email / Username</label>
+					<label for="email" class="cols-sm-2 control-label">Username / Email</label>
 					<div class="cols-sm-10">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>

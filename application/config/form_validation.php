@@ -29,4 +29,17 @@ $config = array(
         ),
     ),
 
+    'signIn' => array(
+        array(
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required|trim',
+        ),
+        array(
+            'field' => 'password',
+            'label' => 'Password',
+            'rules' => 'required',
+        ),
+    ),
+
 );
