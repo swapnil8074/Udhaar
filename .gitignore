@@ -29,3 +29,8 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+application/config/email.php
+assets/images/site/money-bg.jpg
+assets/images/site/project designs/attachment.png
+assets/images/site/project designs/attachment (1).png
+assets/images/site/project designs/login_1x.jpg

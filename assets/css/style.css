@@ -46,24 +46,29 @@ body {
   color: #457aa9;
 }
 .signupForm input[type="text"],
-.signupForm input[type="password"] {
+.signinForm input[type="text"],
+.signupForm input[type="password"],
+.signinForm input[type="password"] {
   color: #457aa9;
   border: none !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   border-bottom: 1px solid #25252d !important;
 }
-.signupForm input[type="text"]:focus {
+.signupForm input[type="text"]:focus,
+.signinForm input[type="text"]:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.signupForm .btn-block {
+.signupForm .btn-block,
+.signinForm .btn-block {
   width: auto;
   margin: 0 auto;
   margin-top: 30px;
   border-radius: 1px;
 }
-.signupForm .input-group-addon:first-child {
+.signupForm .input-group-addon:first-child,
+.signinForm .input-group-addon:first-child {
   border-right: 0;
   background: none;
   color: #457aa9;

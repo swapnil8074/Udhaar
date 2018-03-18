@@ -55,8 +55,8 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form> -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="<?php echo base_url('WelcomeUser/signin'); ?>">Sign In</a></li>
-        <li><a href="<?php echo base_url('WelcomeUser/signup'); ?>">Sign Up</a></li>
+        <li><a href="<?php echo base_url('signin'); ?>">Sign In</a></li>
+        <li><a href="<?php echo base_url('signup'); ?>">Sign Up</a></li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
