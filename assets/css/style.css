@@ -36,6 +36,12 @@ body {
 .navbar li > a {
   color: #efefef !important;
 }
+.navbar ul.dropdown-menu li > a {
+  color: #457AA9 !important;
+}
+.navbar li.dropdown.open > a {
+  color: #457AA9 !important;
+}
 .navbar .navbar-brand {
   font-weight: 600;
   font-size: 24px;

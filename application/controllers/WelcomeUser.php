@@ -28,8 +28,19 @@ class WelcomeUser extends CI_Controller
                 $formData = $this->input->post();
                 $userData = $this->login($formData);
                 if ($userData) {
-                    $this->session->set_userdata($userData);
-                    redirect('dashboard');
+                    $this->session->set_userdata('user', $userData);
+                    
+                    echo "<pre>"; print_r($userData); 
+                    echo "<pre>"; print_r($this->session->userdata()); die;
+                    
+                    // $user() = array(
+                    //     'id' => $userData['id'],
+                    //     'email' => $userData['email'],
+                    //     'gender'
+                    //     'name' =>$userData['first_name']. ' '. $userData['last_name'];
+                    // );
+                        
+                    // redirect('dashboard');
                 } else {
                     $this->session->set_flashdata(array('msg' => 'Incorrect Username / Email ', 'msgClass' => 'alert-danger'));
                     $this->session->keep_flashdata(array('msg', 'msgClass'));
@@ -135,5 +146,11 @@ class WelcomeUser extends CI_Controller
         $this->load->model('WelcomeUser_model');
         $userData = $this->WelcomeUser_model->login($formData);
         return $userData;
+    }
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect('signin');
     }
 }

@@ -6,16 +6,22 @@
 @colorPrimary : #457AA9;
 @white : #efefef;
 
-.medium-text{font-size: 16px;}
-.tcBlue{ color: @colorPrimary; }
-.appTitle{font-weight:600; }
+.medium-text {
+	font-size: 16px;
+}
+.tcBlue {
+	color: @colorPrimary;
+}
+.appTitle {
+	font-weight: 600;
+}
 .footer {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
 	height: 60px;
 	line-height: 60px;
-	background-color:@white;
+	background-color: @white;
 }
 
 body {
@@ -35,7 +41,12 @@ body {
 	li > a {
 		color: @white !important;
 	}
-
+	ul.dropdown-menu li > a {
+		color: @colorPrimary !important;
+	}
+	li.dropdown.open > a {
+		color: @colorPrimary !important;
+	}
 	.navbar-brand {
 		font-weight: 600;
 		font-size: 24px;
@@ -46,8 +57,14 @@ body {
 		}
 	}
 }
+// .navbar-default .navbar-nav > .open > a,
+// .navbar-default .navbar-nav > .open > a:hover,
+// .navbar-default .navbar-nav > .open > a:focus {
+// 	background-color: @colorPrimary;
+// }
 
-.signupForm , .signinForm{
+.signupForm,
+.signinForm {
 	input[type="text"],
 	input[type="password"] {
 		color: #457aa9;

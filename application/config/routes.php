@@ -55,5 +55,7 @@ $route['default_controller'] = 'welcomeuser/signin';
 $route['404_override'] = '';
 $route['signup']='welcomeuser/signup';
 $route['signin']='welcomeuser/signin';
+$route['logout']='welcomeuser/logout';
+
 
 $route['translate_uri_dashes'] = FALSE;
