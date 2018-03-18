@@ -1,5 +1,5 @@
 /* #colors  
-    bgDark : #25252D;
+    bgdark : #25252D;
     primary color: #457AA9
 */
 .medium-text {
@@ -50,6 +50,11 @@ body {
 }
 .navbar .navbar-brand span {
   color: #457aa9;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  background-color: #fff !important;
 }
 .signupForm input[type="text"],
 .signinForm input[type="text"],

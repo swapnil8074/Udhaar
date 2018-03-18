@@ -1,16 +1,17 @@
 /* #colors  
-    bgDark : #25252D;
+    bgdark : #25252D;
     primary color: #457AA9
 */
-@bgDark : #25252d;
-@colorPrimary : #457AA9;
+@bgdark : #25252d;
+@colorprimary : #457AA9;
 @white : #efefef;
+@pureWhite: #fff;
 
 .medium-text {
 	font-size: 16px;
 }
 .tcBlue {
-	color: @colorPrimary;
+	color: @colorprimary;
 }
 .appTitle {
 	font-weight: 600;
@@ -33,19 +34,19 @@ body {
 }
 
 .navbar {
-	background-color: @bgDark;
+	background-color: @bgdark;
 	border-radius: 0;
 	li > a:hover {
-		color: @colorPrimary !important;
+		color: @colorprimary !important;
 	}
 	li > a {
 		color: @white !important;
 	}
 	ul.dropdown-menu li > a {
-		color: @colorPrimary !important;
+		color: @colorprimary !important;
 	}
 	li.dropdown.open > a {
-		color: @colorPrimary !important;
+		color: @colorprimary !important;
 	}
 	.navbar-brand {
 		font-weight: 600;
@@ -57,11 +58,11 @@ body {
 		}
 	}
 }
-// .navbar-default .navbar-nav > .open > a,
-// .navbar-default .navbar-nav > .open > a:hover,
-// .navbar-default .navbar-nav > .open > a:focus {
-// 	background-color: @colorPrimary;
-// }
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+	background-color: @pureWhite!important;
+}
 
 .signupForm,
 .signinForm {
@@ -71,7 +72,7 @@ body {
 		border: none !important;
 		-webkit-box-shadow: none !important;
 		box-shadow: none !important;
-		border-bottom: 1px solid @bgDark !important;
+		border-bottom: 1px solid @bgdark !important;
 	}
 	input[type="text"]:focus {
 		-webkit-box-shadow: none;

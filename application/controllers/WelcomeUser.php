@@ -28,19 +28,15 @@ class WelcomeUser extends CI_Controller
                 $formData = $this->input->post();
                 $userData = $this->login($formData);
                 if ($userData) {
+                    if ($userData['verified'] != '1') {
+                        $this->session->set_flashdata(array('msg' => 'Kindly Verify your account to login.', 'msgClass' => 'alert-danger'));
+                        // Click <a href="">here</a> to resend verification link to your mail.
+                        $this->session->keep_flashdata(array('msg', 'msgClass'));
+                        redirect(base_url() . 'signin');
+
+                    }
                     $this->session->set_userdata('user', $userData);
-                    
-                    echo "<pre>"; print_r($userData); 
-                    echo "<pre>"; print_r($this->session->userdata()); die;
-                    
-                    // $user() = array(
-                    //     'id' => $userData['id'],
-                    //     'email' => $userData['email'],
-                    //     'gender'
-                    //     'name' =>$userData['first_name']. ' '. $userData['last_name'];
-                    // );
-                        
-                    // redirect('dashboard');
+                    redirect(base_url() . 'dashboard');
                 } else {
                     $this->session->set_flashdata(array('msg' => 'Incorrect Username / Email ', 'msgClass' => 'alert-danger'));
                     $this->session->keep_flashdata(array('msg', 'msgClass'));
@@ -72,7 +68,7 @@ class WelcomeUser extends CI_Controller
                 $this->session->keep_flashdata(array('msg', 'msgClass'));
             } else {
 
-                $user['first_name'] = $formData['name'];
+                $user['name'] = $formData['name'];
                 // $user['last_name'] = $formData['name'];
                 $user['email'] = $formData['email'];
                 $user['password'] = $formData['password'];
@@ -132,11 +128,11 @@ class WelcomeUser extends CI_Controller
         if ($result) {
             $this->session->set_flashdata(array('msg' => 'Account has been verified successfully! Enter your credentials to signin. ', 'msgClass' => 'alert-success'));
             $this->session->keep_flashdata(array('msg', 'msgClass'));
-            redirect('welcomeuser/signin');
+            redirect(base_url() . 'welcomeuser/signin');
         } else {
             $this->session->set_flashdata(array('msg' => 'Activation link is invalid ', 'msgClass' => 'alert-danger'));
             $this->session->keep_flashdata(array('msg', 'msgClass'));
-            redirect('welcomeuser/signin');
+            redirect(base_url() . 'welcomeuser/signin');
         }
     }
 
@@ -151,6 +147,6 @@ class WelcomeUser extends CI_Controller
     public function logout()
     {
         $this->session->sess_destroy();
-        redirect('signin');
+        redirect(base_url() . 'signin');
     }
 }

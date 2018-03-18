@@ -21,7 +21,7 @@
 <div class="headContainer">
 <?php 
 // echo "<pre>"; print_r($this->session->userdata());
-if (!empty($this->session->userdata('email'))) {
+if (!empty($this->session->userdata['user'])) {
     $userActive = true;
 } else {
     $userActive= false;
@@ -70,7 +70,7 @@ if (!empty($this->session->userdata('email'))) {
 
 <?php if ($userActive) {?>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>
